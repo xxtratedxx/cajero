@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -21,6 +23,9 @@ public class Usuario implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idUsuario;
+	
+	@OneToOne
+	@JoinColumn(name="tipo_identificacion")
 	private TipoIdentificacion tipoIdentificacion;
 	private String identificacion;
 	private String nombre;
@@ -37,6 +42,17 @@ public class Usuario implements java.io.Serializable {
 
 	public Usuario(TipoIdentificacion tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
+	}
+	
+	public Usuario(String identificacion, String nombre, String apellido,
+			String direccion, String celular, String email) {
+		this.identificacion = identificacion;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.celular = celular;
+		this.email = email;
+	//	this.cuentas = cuentas;
 	}
 
 	public Usuario(TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido,
