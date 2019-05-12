@@ -15,6 +15,7 @@ import co.edu.uniajc.cajero.util.HibernateUtil;
 @RequestScoped
 public class TipoIdentificacionBean {
 
+	private int id;
 	private String descripcion;
 	
 	private TipoIdentificacionService tipoIdentificacionService;
@@ -28,9 +29,8 @@ public class TipoIdentificacionBean {
 
 	public void buttonAction() {
 		
-		tipoIdentificacionService.save(new TipoIdentificacion("112345678",null));
+		tipoIdentificacionService.save(new TipoIdentificacion(descripcion,null));
 		addMessage("Datos de usuario enviados!! Descripcion: " + descripcion);
-		
 	}
 	
 	public void addMessage(String summary) {
@@ -44,5 +44,13 @@ public class TipoIdentificacionBean {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
