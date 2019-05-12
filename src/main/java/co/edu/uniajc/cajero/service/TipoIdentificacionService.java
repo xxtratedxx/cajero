@@ -1,5 +1,8 @@
 package co.edu.uniajc.cajero.service;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -23,13 +26,23 @@ public class TipoIdentificacionService {
 		return tipoIdentificacionDao.findById(id);
 	}
 	
+	public List<TipoIdentificacion> findByIdall() {
+		return tipoIdentificacionDao.findByIdall();
+	}
+	
 	public void save(TipoIdentificacion TipoIdentificacion) {
 		tipoIdentificacionDao.save(TipoIdentificacion);
 	}
 	
-
+	public TipoIdentificacion Update(int id,String desc){
+		return tipoIdentificacionDao.Update(id,desc);
+	}
+	public TipoIdentificacion Delete(int id){
+		return tipoIdentificacionDao.Delete(id);
+	}
 	public void closeSession(){
 		tipoIdentificacionDao.closeSession();
 	}
+	
 }
 
