@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<h2>Create User</h2>
+
+	<h:form>
+		<p:growl id="growl" life="2000" />
+		<p:fieldset legend="User" style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="Tipo identificacion: " />
+				<p:selectOneButton value="#{userBean.tipoIdentificacion}">
+					<f:selectItem itemLabel="Cedula ciudadania" itemValue="1" />
+					<f:selectItem itemLabel="Tarjeta de identidad" itemValue="2" />
+					<f:selectItem itemLabel="Pasaporte" itemValue="3" />
+				</p:selectOneButton>
+
+				<h:outputText value="Identificacion: " />
+				<h:inputText id="identificacion" size="40" maxlength="60"
+					value="#{userBean.identificacion}">
+				</h:inputText>
+
+				<h:outputText value="Nombre: " />
+				<h:inputText id="nombre" size="40" maxlength="60"
+					value="#{userBean.nombre}">
+					<p:ajax event="keyup" update="out"
+						listener="#{userBean.handleKeyEvent}" />
+				</h:inputText>
+				
+				<h:outputText value="Apellidos: " />
+				<h:inputText id="apellido" size="40" maxlength="60"
+					value="#{userBean.apellido}">
+				</h:inputText>
+				
+				<h:outputText value="Direccion: " />
+				<h:inputText id="direccion" size="40" maxlength="60"
+					value="#{userBean.direccion}">
+				</h:inputText>
+				
+				<h:outputText value="Celular: " />
+				<h:inputText id="celular" size="40" maxlength="60"
+					value="#{userBean.celular}">
+				</h:inputText>
+				
+				<h:outputText value="Email: " />
+				<h:inputText id="email" size="40" maxlength="60"
+					value="#{userBean.email}">
+				</h:inputText>
+			</h:panelGrid>
+			<br />
+
+
+			<p:commandButton value="enviar" id="send" update="growl"
+				action="#{userBean.buttonAction}" style="margin-right:20px;"
+				styleClass="ui-priority-primary" />
+		</p:fieldset>
+
+		<h:outputLabel id="out" value="#{userBean.nombre}" />
+	</h:form>
+
+
+	<!-- 		<h:form> -->
+	<!--             User: <h:inputText id="user" size="40" maxlength="60" -->
+	<!-- 				value="#{userManagedBean.user}" /> -->
+	<!-- 			<br /> -->
+	<!--             Nick name: <h:inputText id="nickName" size="40" -->
+	<!-- 				maxlength="60" value="#{userManagedBean.nickName}" /> -->
+	<!-- 			<br /> -->
+	<!--             Email: <h:inputText id="email" size="40" maxlength="60" -->
+	<!-- 				value="#{userManagedBean.email}" /> -->
+	<!-- 			<br /> -->
+	<!--             Validation Code:<h:inputText id="validationCode" size="40" -->
+	<!-- 				maxlength="60" value="#{userManagedBean.validationCode}" /> -->
+	<!-- 			<br /> -->
+	<!--             The validation code is necesary to validate the user<br /> -->
+	<!--             (El código de validación es necesario para validad el usuario)<br /> -->
+	<!-- 			<h:commandButton id="submit" value="SUBMIT" action="validation" /> -->
+	<!-- 		</h:form> -->
+
+</h:body>
+</html>

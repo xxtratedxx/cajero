@@ -2,18 +2,18 @@ package co.edu.uniajc.cajero.service;
 
 
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Session;
-
-
-
 import co.edu.uniajc.cajero.dao.ImpTipoIdentificacionDao;
 import co.edu.uniajc.cajero.model.TipoIdentificacion;
 
-public class TipoIdentificacionService {
+public class TipoIdentificacionService implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ImpTipoIdentificacionDao tipoIdentificacionDao;
 	
 	public TipoIdentificacionService(Session session) {

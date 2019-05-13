@@ -15,7 +15,7 @@
 	<h:form>
 		<p:growl id="growl" life="2000" />
 		<p:fieldset legend="Tipo Identificacion" style="margin-bottom:20px">
-			<h:outputText value="Descripcion: " />
+			<h:outputText value="Id: " />
 			<h:inputText id="descripcion" size="40" maxlength="60"
 				value="#{tipoIdentificacionBean.descripcion}">
 			</h:inputText>
@@ -25,20 +25,6 @@
 				styleClass="ui-priority-primary" />
 		</p:fieldset>
 	</h:form>
-	
-	<h:form>
-		<p:commandButton value="Mostrar" actionListener="#{tipoIdentificacionBean.listar()}" update="table" />
-				
-    <p:dataTable  id="table" value="#{tipoIdentificacionBean.lista}"  var="p">
-       <p:column headerText="id">
-           <h:outputText value="#{p.idIdentificacion}" />
-       </p:column>
-        <p:column headerText="Descripcion">
-           <h:outputText value="#{p.descripcion}" />
-       </p:column>
-       
-    </p:dataTable>
-   </h:form>
 
 </h:body>
 </html>

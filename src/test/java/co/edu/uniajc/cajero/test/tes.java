@@ -30,7 +30,9 @@ public class tes {
 	     
 	     
 	    // UsuarioService.save(new Usuario("cedula_997","steven", "lopez", "calle 23", null, null, "7458666", "steven@hotmail.com", 3));
-		System.out.println(TipoIdentificacionService.findByIdall().toString());
+		
+		
+		System.out.println(TipoIdentificacionService.findByIdall().get(3).getDescripcion().toString());
 	//	TipoIdentificacionService.findByIdall();
 	    
 		TipoIdentificacionService.closeSession();
