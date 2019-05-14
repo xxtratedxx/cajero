@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import co.edu.uniajc.cajero.model.Usuario;
+import co.edu.uniajc.cajero.model.Usuario_;
 
 /**
  * Home object for domain model class Usuario.
@@ -39,6 +40,7 @@ public class ImpUsuarioDao  implements UsuarioDao {
 			 //construyendo la consulta 
 			   criteria.select(root); 
 			 //adicionar a lista la consulta
+			   
 			   List<Usuario> lstUsuario = session.createQuery(criteria).getResultList();
 			   tx.commit();
 			   
@@ -57,6 +59,58 @@ public class ImpUsuarioDao  implements UsuarioDao {
 	public void closeSession() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void save(Usuario usuario) {
+		Transaction tx = null;
+		try {
+			tx = session.beginTransaction();
+			
+			session.save(usuario);
+			
+			tx.commit();
+		} 
+		catch (Exception e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}	
+				
+	}
+
+	@Override
+	public Usuario findById(int id) {
+		Transaction tx = null;
+		Usuario Usuario = null;
+		try {
+			tx = session.beginTransaction();
+			
+			// frabrica  para las piezas individuales de criteria 
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
+			
+			// Definir el tipo de entidad que retorna la consulta 
+			Root<Usuario> root = criteria.from(Usuario.class);
+			
+			//construyendo la consulta 
+			criteria.select(root);
+			criteria.where(
+					builder.equal(root.get(Usuario_.idUsuario), id)
+					);
+			
+			Usuario = session.createQuery(criteria).getSingleResult();
+			
+			tx.commit();
+		} 
+		catch (Exception e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}
+		return Usuario;
 	}
 
 }	

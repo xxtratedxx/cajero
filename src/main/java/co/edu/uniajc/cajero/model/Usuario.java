@@ -2,9 +2,6 @@ package co.edu.uniajc.cajero.model;
 // Generated 7/04/2019 01:08:10 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Usuario")
 public class Usuario implements java.io.Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8645019343134438422L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,16 +38,21 @@ public class Usuario implements java.io.Serializable {
 	private Date fecCreacion;
 	private Date fecActualiza;
 //	private Set cuentas = new HashSet(0);
+	
+	public Usuario () {
+		
+	}
 
-	public Usuario() {
+	public Usuario(String string, int i, String string2) {
 	}
 
 	public Usuario(TipoIdentificacion tipoIdentificacion) {
 		this.tipoIdentificacion = tipoIdentificacion;
 	}
 	
-	public Usuario(String identificacion, String nombre, String apellido,
+	public Usuario(TipoIdentificacion tipoIdentificacion,String identificacion, String nombre, String apellido,
 			String direccion, String celular, String email) {
+		this.tipoIdentificacion = tipoIdentificacion;
 		this.identificacion = identificacion;
 		this.nombre = nombre;
 		this.apellido = apellido;

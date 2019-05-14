@@ -33,6 +33,11 @@ public class TipoIdentificacion implements java.io.Serializable {
 		this.descripcion = descripcion;
 
 	}
+	
+	public TipoIdentificacion(int idIdentificacion) {
+		this.idIdentificacion = idIdentificacion;
+
+	}
 
 	public Integer getIdIdentificacion() {
 		return this.idIdentificacion;

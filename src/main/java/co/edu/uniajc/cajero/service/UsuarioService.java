@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Session;
-
 import co.edu.uniajc.cajero.dao.ImpUsuarioDao;
 import co.edu.uniajc.cajero.model.Usuario;
 
@@ -21,14 +20,21 @@ public class UsuarioService implements Serializable {
 		usuarioDao = new ImpUsuarioDao(session);
 	}
 	
+	public Usuario findById(int id){
+		return usuarioDao.findById(id);
+	}
+	
+	
 	public List<Usuario> findByIdall() {
 		return usuarioDao.findByIdall();
 	}
 	
+	public void save(Usuario usuario) {
+		usuarioDao.save(usuario);
+	}
+	
 	public void closeSession(){
 		usuarioDao.closeSession();
-	}	
-	
-	
+	}		
 
 }
