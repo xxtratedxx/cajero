@@ -1,9 +1,14 @@
 package Pruebas_bean;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+import co.edu.uniajc.cajero.model.Usuario;
 
 @ManagedBean(name = "userBean", eager = true)
 @RequestScoped
@@ -17,7 +22,11 @@ public class UserBean {
 	private int celular;
 	private String email;
 	
-	private String resul;
+	private List<Usuario> lstUsers;
+	
+	public UserBean() {
+		lstUsers = new ArrayList<>();
+	}
 	
 	public void handleKeyEvent() {
         nombre = nombre.toUpperCase();
@@ -66,14 +75,6 @@ public class UserBean {
 		this.celular = celular;
 	}
 
-	public String getResul() {
-		return resul;
-	}
-
-	public void setResul(String resul) {
-		this.resul = resul;
-	}
-
 	public int getTipoIdentificacion() {
 		return tipoIdentificacion;
 	}
@@ -96,6 +97,14 @@ public class UserBean {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Usuario> getLstUsers() {
+		return lstUsers;
+	}
+
+	public void setLstUsers(List<Usuario> lstUsers) {
+		this.lstUsers = lstUsers;
 	}
 
 }

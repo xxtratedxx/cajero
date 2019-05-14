@@ -14,7 +14,7 @@
 
 	<h:form>
 		<p:growl id="growl" life="2000" />
-		<p:fieldset legend="User" style="margin-bottom:20px">
+		<p:fieldset legend="Crear Usuario" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputText value="Tipo identificacion: " />
 				<p:selectOneButton value="#{userBean.tipoIdentificacion}">
@@ -34,22 +34,22 @@
 					<p:ajax event="keyup" update="out"
 						listener="#{userBean.handleKeyEvent}" />
 				</h:inputText>
-				
+
 				<h:outputText value="Apellidos: " />
 				<h:inputText id="apellido" size="40" maxlength="60"
 					value="#{userBean.apellido}">
 				</h:inputText>
-				
+
 				<h:outputText value="Direccion: " />
 				<h:inputText id="direccion" size="40" maxlength="60"
 					value="#{userBean.direccion}">
 				</h:inputText>
-				
+
 				<h:outputText value="Celular: " />
 				<h:inputText id="celular" size="40" maxlength="60"
 					value="#{userBean.celular}">
 				</h:inputText>
-				
+
 				<h:outputText value="Email: " />
 				<h:inputText id="email" size="40" maxlength="60"
 					value="#{userBean.email}">
@@ -66,24 +66,39 @@
 		<h:outputLabel id="out" value="#{userBean.nombre}" />
 	</h:form>
 
+	<h:form id="readUsers">
+		<p:fieldset legend="Usuarios" style="margin-bottom:20px">
+			<p:dataTable var="user" value="#{userBean.lstUsers}">
+				<p:column headerText="tipo Identificacion">
+					<h:outputText value="#{user.tipoIdentificacion}" />
+				</p:column>
 
-	<!-- 		<h:form> -->
-	<!--             User: <h:inputText id="user" size="40" maxlength="60" -->
-	<!-- 				value="#{userManagedBean.user}" /> -->
-	<!-- 			<br /> -->
-	<!--             Nick name: <h:inputText id="nickName" size="40" -->
-	<!-- 				maxlength="60" value="#{userManagedBean.nickName}" /> -->
-	<!-- 			<br /> -->
-	<!--             Email: <h:inputText id="email" size="40" maxlength="60" -->
-	<!-- 				value="#{userManagedBean.email}" /> -->
-	<!-- 			<br /> -->
-	<!--             Validation Code:<h:inputText id="validationCode" size="40" -->
-	<!-- 				maxlength="60" value="#{userManagedBean.validationCode}" /> -->
-	<!-- 			<br /> -->
-	<!--             The validation code is necesary to validate the user<br /> -->
-	<!--             (El código de validación es necesario para validad el usuario)<br /> -->
-	<!-- 			<h:commandButton id="submit" value="SUBMIT" action="validation" /> -->
-	<!-- 		</h:form> -->
+				<p:column headerText="Identificacion">
+					<h:outputText value="#{user.identificacion}" />
+				</p:column>
 
+				<p:column headerText="Nombre">
+					<h:outputText value="#{user.nombre}" />
+				</p:column>
+
+				<p:column headerText="Apellido">
+					<h:outputText value="#{user.apellido}" />
+				</p:column>
+
+				<p:column headerText="Direccion">
+					<h:outputText value="#{user.direccion}" />
+				</p:column>
+
+				<p:column headerText="celular">
+					<h:outputText value="#{user.celular}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{user.email}" />
+				</p:column>
+
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
 </h:body>
 </html>
