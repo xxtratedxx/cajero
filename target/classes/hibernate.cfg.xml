@@ -15,7 +15,7 @@
   <!--         <mapping resource="com/novellius/domain/Tramite.hbm.xml"/> -->
         
   <!-- Usar mapping en base a anotaciones-->
-   <mapping class="co.edu.uniajc.cajero.model.TipoIdentificacion"/>
+    <mapping class="co.edu.uniajc.cajero.model.TipoIdentificacion"/>
    <mapping class="co.edu.uniajc.cajero.model.Banco"/>
    <mapping class="co.edu.uniajc.cajero.model.Usuario"/>
    <mapping class="co.edu.uniajc.cajero.model.Transaccion"/>
@@ -27,5 +27,6 @@
    <mapping class="co.edu.uniajc.cajero.model.DetalleId"/>
    <mapping class="co.edu.uniajc.cajero.model.Cuenta"/>
    <mapping class="co.edu.uniajc.cajero.model.Cajero"/>
-   </session-factory>
+
+ </session-factory>
 </hibernate-configuration>
