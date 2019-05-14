@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+<h:body>
+	<h2>Create User</h2>
+
+	<h:form>
+		<p:growl id="growl" life="2000" />
+		<p:fieldset legend="Crear Usuario" style="margin-bottom:20px">
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputText value="Tipo identificacion: " />
+				<p:selectOneButton value="#{userBean.tipoIdentificacion}">
+					<f:selectItem itemLabel="Cedula ciudadania" itemValue="1" />
+					<f:selectItem itemLabel="Tarjeta de identidad" itemValue="2" />
+					<f:selectItem itemLabel="Pasaporte" itemValue="3" />
+				</p:selectOneButton>
+
+				<h:outputText value="Identificacion: " />
+				<h:inputText id="identificacion" size="40" maxlength="60"
+					value="#{userBean.identificacion}">
+				</h:inputText>
+
+				<h:outputText value="Nombre: " />
+				<h:inputText id="nombre" size="40" maxlength="60"
+					value="#{userBean.nombre}">
+					<p:ajax event="keyup" update="out"
+						listener="#{userBean.handleKeyEvent}" />
+				</h:inputText>
+
+				<h:outputText value="Apellidos: " />
+				<h:inputText id="apellido" size="40" maxlength="60"
+					value="#{userBean.apellido}">
+				</h:inputText>
+
+				<h:outputText value="Direccion: " />
+				<h:inputText id="direccion" size="40" maxlength="60"
+					value="#{userBean.direccion}">
+				</h:inputText>
+
+				<h:outputText value="Celular: " />
+				<h:inputText id="celular" size="40" maxlength="60"
+					value="#{userBean.celular}">
+				</h:inputText>
+
+				<h:outputText value="Email: " />
+				<h:inputText id="email" size="40" maxlength="60"
+					value="#{userBean.email}">
+				</h:inputText>
+			</h:panelGrid>
+			<br />
+
+
+			<p:commandButton value="enviar" id="send" update="growl"
+				action="#{userBean.buttonAction}" style="margin-right:20px;"
+				styleClass="ui-priority-primary" />
+		</p:fieldset>
+
+		<h:outputLabel id="out" value="#{userBean.nombre}" />
+	</h:form>
+
+	<h:form id="readUsers">
+		<p:fieldset legend="Usuarios" style="margin-bottom:20px">
+			<p:dataTable var="user" value="#{userBean.lstUsers}">
+				<p:column headerText="tipo Identificacion">
+					<h:outputText value="#{user.tipoIdentificacion}" />
+				</p:column>
+
+				<p:column headerText="Identificacion">
+					<h:outputText value="#{user.identificacion}" />
+				</p:column>
+
+				<p:column headerText="Nombre">
+					<h:outputText value="#{user.nombre}" />
+				</p:column>
+
+				<p:column headerText="Apellido">
+					<h:outputText value="#{user.apellido}" />
+				</p:column>
+
+				<p:column headerText="Direccion">
+					<h:outputText value="#{user.direccion}" />
+				</p:column>
+
+				<p:column headerText="celular">
+					<h:outputText value="#{user.celular}" />
+				</p:column>
+
+				<p:column headerText="Email">
+					<h:outputText value="#{user.email}" />
+				</p:column>
+
+			</p:dataTable>
+		</p:fieldset>
+	</h:form>
+</h:body>
+</html>
