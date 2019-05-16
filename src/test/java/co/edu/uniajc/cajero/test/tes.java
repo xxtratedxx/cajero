@@ -3,14 +3,8 @@ package co.edu.uniajc.cajero.test;
 
 import org.hibernate.Session;
 import org.junit.Test;
-
-import co.edu.uniajc.cajero.model.TipoIdentificacion;
-import co.edu.uniajc.cajero.model.Usuario;
 import co.edu.uniajc.cajero.service.TipoIdentificacionService;
-import co.edu.uniajc.cajero.service.UsuarioService;
 import co.edu.uniajc.cajero.util.HibernateUtil;
-
-
 public class tes {
 
 	@Test
@@ -33,6 +27,8 @@ public class tes {
 		
 		
 		System.out.println(TipoIdentificacionService.findByIdall().get(3).getDescripcion().toString());
+		TipoIdentificacionService.Update(3, "pruebba update");
+		TipoIdentificacionService.Delete(23);
 	//	TipoIdentificacionService.findByIdall();
 	    
 		TipoIdentificacionService.closeSession();

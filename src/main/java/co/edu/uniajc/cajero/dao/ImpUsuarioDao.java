@@ -2,12 +2,14 @@ package co.edu.uniajc.cajero.dao;
 // Generated 7/04/2019 01:08:54 PM by Hibernate Tools 5.2.12.Final
 
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
 import co.edu.uniajc.cajero.model.Usuario_;
 
@@ -54,10 +56,6 @@ public class ImpUsuarioDao  implements UsuarioDao {
 			
 			return null;
 		}		 
-		
-	}
-	public void closeSession() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -113,7 +111,87 @@ public class ImpUsuarioDao  implements UsuarioDao {
 		return Usuario;
 	}
 
-}	
+	@Override
+	public Usuario Update(int id, TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido,
+			String direccion, String celular, String email,Date fecActualiza) {
+		Transaction tx = null;
+		Usuario Usuario = null;
+		try {
+			tx = session.beginTransaction();
+			
+			// frabrica  para las piezas individuales de criteria 
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
+			
+			// Definir el tipo de entidad que retorna la consulta 
+			Root<Usuario> root = criteria.from(Usuario.class);
+			
+			//construyendo la consulta 
+			criteria.select(root);
+			criteria.where(
+					builder.equal(root.get(Usuario_.idUsuario), id)
+					);
+			
+			Usuario = session.createQuery(criteria).getSingleResult();
+			
+			//Update		
+			Usuario.setTipoIdentificacion(tipoIdentificacion);
+			Usuario.setIdentificacion(identificacion);
+			Usuario.setNombre(nombre);
+			Usuario.setApellido(apellido);
+			Usuario.setCelular(celular);
+			Usuario.setDireccion(direccion);
+			Usuario.setEmail(email);
+			Usuario.setFecActualiza(fecActualiza);		
+			session.update(Usuario);
+			
+			tx.commit();
+		} 
+		catch (Exception e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}
+		return Usuario;
+	}
 
+	@Override
+	public Usuario Delete(int id) {
+		Transaction tx = null;
+		Usuario Usuario = null;
+		try {
+			tx = session.beginTransaction();
+			
+			// frabrica  para las piezas individuales de criteria 
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+			CriteriaQuery<Usuario> criteria = builder.createQuery(Usuario.class);
+			
+			// Definir el tipo de entidad que retorna la consulta 
+			Root<Usuario> root = criteria.from(Usuario.class);
+			
+			//construyendo la consulta 
+			criteria.select(root);
+			criteria.where(
+					builder.equal(root.get(Usuario_.idUsuario), id)
+					);
+			
+			Usuario = session.createQuery(criteria).getSingleResult();
+			
+			tx.commit();
+		} 
+		catch (Exception e) {
+			if(tx != null){
+				tx.rollback();
+			}
+			e.printStackTrace();
+		}
+		return Usuario;
+	}
+	
+	public void closeSession() {
+		// TODO Auto-generated method stub
+		
+	}
 
-
+}

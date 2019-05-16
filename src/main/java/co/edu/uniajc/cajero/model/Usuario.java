@@ -88,8 +88,8 @@ public class Usuario implements java.io.Serializable {
 		return this.tipoIdentificacion;
 	}
 
-	public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
-		this.tipoIdentificacion = tipoIdentificacion;
+	public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion2) { 
+		this.tipoIdentificacion = (TipoIdentificacion) tipoIdentificacion2;
 	}
 
 	public String getIdentificacion() {

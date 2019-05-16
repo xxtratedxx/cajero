@@ -1,10 +1,12 @@
 package co.edu.uniajc.cajero.service;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Session;
 import co.edu.uniajc.cajero.dao.ImpUsuarioDao;
+import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
 
 public class UsuarioService implements Serializable {
@@ -24,6 +26,10 @@ public class UsuarioService implements Serializable {
 		return usuarioDao.findById(id);
 	}
 	
+	public Usuario Update(int id ,TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido, String direccion, String celular, String email, Date fecActualiza){
+		return usuarioDao.Update(id,tipoIdentificacion,identificacion,nombre,apellido, direccion, celular,email,fecActualiza);
+	}
+	
 	
 	public List<Usuario> findByIdall() {
 		return usuarioDao.findByIdall();
@@ -31,6 +37,9 @@ public class UsuarioService implements Serializable {
 	
 	public void save(Usuario usuario) {
 		usuarioDao.save(usuario);
+	}
+	public Usuario Delete(int id){
+		return usuarioDao.Delete(id);
 	}
 	
 	public void closeSession(){

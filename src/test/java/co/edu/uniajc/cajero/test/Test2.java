@@ -29,8 +29,10 @@ public class Test2 {
 	     TipoIdentificacion tipoIdentificacion = new TipoIdentificacion(identificacion);
 
 		   System.out.println(UsuarioService.findByIdall());
-		UsuarioService.save(new Usuario(tipoIdentificacion, "98574", "prueba", "prueba", "carrera 7", "31525", "buitrago500", date1, date1));
-		 UsuarioService.closeSession();
+		UsuarioService.save(new Usuario(tipoIdentificacion, "98574", "prueba", "prueba", "carrera 7", "31525", "buitrago500",date1,date1));
+		UsuarioService.Update(1, tipoIdentificacion, "65632", "prueba", "prueba", "carrera 7", "31525", "buitrago500",date1);
+		UsuarioService.Delete(2);
+		UsuarioService.closeSession();
 		 
 	
 			
