@@ -16,44 +16,43 @@
 		<p:growl id="growl" life="2000" />
 		<p:fieldset legend="Crear Usuario" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
-				<!-- Tipo identificacion en construccion -->
-				<p:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
-				<p:selectOneMenu id="tipoIdentificacion" value="#{userBean.tipoIdentificacion}"
-					style="width:125px">
-					<f:selectItem itemLabel="Select One" itemValue="" />
-					<f:selectItems value="#{userBean.lstTipoIdentificacion}" var="identificacion" itemLabel="#{identificacion.descripcion}" itemValue="#{identificacion.idIdentificacion}" />
-				</p:selectOneMenu>
-				
+				<h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
+				<h:selectOneMenu id="tipoIdentificacion" value="#{userBean.tipoIdentificacion}" required="true">
+					<f:selectItems value="#{userBean.lstTipoIdentificacion}" var="identificacion" 
+						itemLabel="#{identificacion.descripcion}"
+						itemValue="#{identificacion.idIdentificacion}" />
+				</h:selectOneMenu>
+
 				<h:outputText value="Identificacion: " />
 				<h:inputText id="identificacion" size="40" maxlength="60"
-					value="#{userBean.identificacion}">
+					value="#{userBean.identificacion}" required="true">
 				</h:inputText>
 
 				<h:outputText value="Nombre: " />
 				<h:inputText id="nombre" size="40" maxlength="60"
-					value="#{userBean.nombre}">
+					value="#{userBean.nombre}" required="true">
 					<p:ajax event="keyup" update="out"
 						listener="#{userBean.handleKeyEvent}" />
 				</h:inputText>
 
 				<h:outputText value="Apellidos: " />
 				<h:inputText id="apellido" size="40" maxlength="60"
-					value="#{userBean.apellido}">
+					value="#{userBean.apellido}" required="true">
 				</h:inputText>
 
 				<h:outputText value="Direccion: " />
 				<h:inputText id="direccion" size="40" maxlength="60"
-					value="#{userBean.direccion}">
+					value="#{userBean.direccion}" required="true">
 				</h:inputText>
 
 				<h:outputText value="Celular: " />
 				<h:inputText id="celular" size="40" maxlength="60"
-					value="#{userBean.celular}">
+					value="#{userBean.celular}" required="true">
 				</h:inputText>
 
 				<h:outputText value="Email: " />
 				<h:inputText id="email" size="40" maxlength="60"
-					value="#{userBean.email}">
+					value="#{userBean.email}" required="true">
 				</h:inputText>
 			</h:panelGrid>
 			<br />

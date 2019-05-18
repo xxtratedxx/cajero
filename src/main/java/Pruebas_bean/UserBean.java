@@ -19,68 +19,108 @@ import co.edu.uniajc.cajero.service.TipoIdentificacionService;
 import co.edu.uniajc.cajero.service.UsuarioService;
 import co.edu.uniajc.cajero.util.HibernateUtil;
 
+/**
+ * 
+ * @author Steven Ordoñez
+ *
+ */
 @ManagedBean(name = "userBean", eager = true)
 @RequestScoped
 public class UserBean {
 
 	private int tipoIdentificacion;
-	private int identificacion;
+	private String identificacion;
 	private String nombre;
 	private String apellido;
 	private String direccion;
-	private int celular;
+	private String celular;
 	private String email;
 	
 	private List<TipoIdentificacion> lstTipoIdentificacion;
 	private List<Usuario> lstUsers;
 	
-	public UserBean() {
+	
+	// Constructor
+	public UserBean() {	
 		lstUsers = new ArrayList<>();
 		lstTipoIdentificacion = new  ArrayList<>();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
-		UsuarioService usuarioService = new UsuarioService(session);
-		usuarioService = new UsuarioService(session);
-		lstUsers = usuarioService.findByIdall();
-		usuarioService.closeSession();
-		
-		TipoIdentificacionService TipoIdentificacionService = new TipoIdentificacionService(session);
-		TipoIdentificacionService = new TipoIdentificacionService(session);
-		lstTipoIdentificacion = TipoIdentificacionService.findByIdall();
-		for (TipoIdentificacion l : lstTipoIdentificacion) {
-			System.out.println("Id: " + l.getIdIdentificacion() + " Descripcion: " + l.getDescripcion());
-		}
-		TipoIdentificacionService.closeSession();
+	
+		this.getLstTipoIdentificacion(session);
+		this.getLstUsers(session);	
 	}
 	
 	public void handleKeyEvent() {
         nombre = nombre.toUpperCase();
     }
 	
+	// Metodo que consulta los registros de la tabla tipo identificacion
+	public void getLstTipoIdentificacion(Session session) {
+		try {
+			
+			TipoIdentificacionService TipoIdentificacionService = new TipoIdentificacionService(session);
+			TipoIdentificacionService = new TipoIdentificacionService(session);
+			lstTipoIdentificacion = TipoIdentificacionService.findByIdall();
+			for (TipoIdentificacion l : lstTipoIdentificacion) {
+				System.out.println("Id: " + l.getIdIdentificacion() + " Descripcion: " + l.getDescripcion());
+			}
+			TipoIdentificacionService.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("Error getLstTipoIdentificacion(): " + e.toString());
+		}
+	}
+	
+	
+	// Metodo que consulta los registros de la tabla usuario
+	public void getLstUsers(Session session) {
+		try {
+			
+			UsuarioService usuarioService = new UsuarioService(session);
+			usuarioService = new UsuarioService(session);
+			lstUsers = usuarioService.findByIdall();
+			usuarioService.closeSession();
+			
+		} catch (Exception e) {
+			System.out.println("Error getLstUsers(): " + e.toString());
+		}
+	}
+	
+	
+	// Metodo que envía los datos del usuario a crear
 	public void buttonAction() throws ParseException {
-		
-		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse("15/04/2019");
-		Integer identificacion = 4;
-		TipoIdentificacion tipoIdentificacion = new TipoIdentificacion(identificacion);
-		
+		this.createUser();
 		addMessage("Datos de usuario enviados!! tipo identificacion: " + tipoIdentificacion + " | identificacion:  " + identificacion + " | nombre: " + nombre + " | apellido: " + apellido + " | direccion: " + direccion + " | celular: " + celular + " | email: " + email);
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		UsuarioService usuarioService = new UsuarioService(session);
-		usuarioService = new UsuarioService(session);
-		usuarioService.save(new Usuario(tipoIdentificacion, "3837494", "prueba", "prueba", "carrera 7", "31525", "buitrago500", date1, date1));
-		usuarioService.closeSession();
     }
+	
+	
+	// Metodo que se conecta al servicio de crear usuario
+	public void createUser() {
+		try {
+			
+			TipoIdentificacion tipoId = new TipoIdentificacion(tipoIdentificacion); // Se obtiene el id del tipo de identificacion que se seleccionó en el formulario
+			
+			Session session = HibernateUtil.getSessionFactory().openSession();
+			UsuarioService usuarioService = new UsuarioService(session);
+			usuarioService = new UsuarioService(session);
+			usuarioService.save(new Usuario(tipoId, identificacion, nombre, apellido, direccion, celular, email, new Date(), new Date()));
+			usuarioService.closeSession();
+		} catch (Exception e) {
+			System.out.println("Error createUser(): " + e.toString());
+		}
+	}
 	
 	public void addMessage(String summary) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, null);
         FacesContext.getCurrentInstance().addMessage(null, message);
     }
 
-	public int getIdentificacion() {
+	public String getIdentificacion() {
 		return identificacion;
 	}
 
-	public void setIdentificacion(int identificacion) {
+	public void setIdentificacion(String identificacion) {
 		this.identificacion = identificacion;
 	}
 
@@ -100,11 +140,11 @@ public class UserBean {
 		this.apellido = apellido;
 	}
 
-	public int getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(int celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
