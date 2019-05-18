@@ -31,16 +31,26 @@ public class UserBean {
 	private int celular;
 	private String email;
 	
+	private List<TipoIdentificacion> lstTipoIdentificacion;
 	private List<Usuario> lstUsers;
 	
 	public UserBean() {
 		lstUsers = new ArrayList<>();
+		lstTipoIdentificacion = new  ArrayList<>();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		UsuarioService usuarioService = new UsuarioService(session);
 		usuarioService = new UsuarioService(session);
 		lstUsers = usuarioService.findByIdall();
 		usuarioService.closeSession();
+		
+		TipoIdentificacionService TipoIdentificacionService = new TipoIdentificacionService(session);
+		TipoIdentificacionService = new TipoIdentificacionService(session);
+		lstTipoIdentificacion = TipoIdentificacionService.findByIdall();
+		for (TipoIdentificacion l : lstTipoIdentificacion) {
+			System.out.println("Id: " + l.getIdIdentificacion() + " Descripcion: " + l.getDescripcion());
+		}
+		TipoIdentificacionService.closeSession();
 	}
 	
 	public void handleKeyEvent() {
@@ -128,6 +138,14 @@ public class UserBean {
 
 	public void setLstUsers(List<Usuario> lstUsers) {
 		this.lstUsers = lstUsers;
+	}
+
+	public List<TipoIdentificacion> getLstTipoIdentificacion() {
+		return lstTipoIdentificacion;
+	}
+
+	public void setLstTipoIdentificacion(List<TipoIdentificacion> lstTipoIdentificacion) {
+		this.lstTipoIdentificacion = lstTipoIdentificacion;
 	}
 
 }
