@@ -1,7 +1,6 @@
 package co.edu.uniajc.cajero.dao;
 // Generated 7/04/2019 01:08:54 PM by Hibernate Tools 5.2.12.Final
 
-
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
