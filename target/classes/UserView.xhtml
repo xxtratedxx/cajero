@@ -17,9 +17,10 @@
 		<p:fieldset legend="Crear Usuario" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 				<h:outputLabel for="tipoIdentificacion" value="Tipo Identificacion:" />
-				<h:selectOneMenu id="tipoIdentificacion" value="#{userBean.tipoIdentificacion}" required="true">
-					<f:selectItems value="#{userBean.lstTipoIdentificacion}" var="identificacion" 
-						itemLabel="#{identificacion.descripcion}"
+				<h:selectOneMenu id="tipoIdentificacion"
+					value="#{userBean.tipoIdentificacion}" required="true">
+					<f:selectItems value="#{userBean.lstTipoIdentificacion}"
+						var="identificacion" itemLabel="#{identificacion.descripcion}"
 						itemValue="#{identificacion.idIdentificacion}" />
 				</h:selectOneMenu>
 
@@ -67,35 +68,120 @@
 	</h:form>
 
 	<h:form id="readUsers">
+		<p:growl id="msg" showDetail="true"/>
 		<p:fieldset legend="Usuarios" style="margin-bottom:20px">
-			<p:dataTable var="user" value="#{userBean.lstUsers}">
+			<p:dataTable id="usersTable" var="user" value="#{userBean.lstUsers}" editable="true">
+				<p:ajax event="rowEdit" listener="#{userBean.onRowEdit}"
+					update=":readUsers:msg" />
+				<p:ajax event="rowEditCancel" listener="#{userBean.onRowCancel}"
+					update=":readUsers:msg" />
 				<p:column headerText="tipo Identificacion">
-					<h:outputText value="#{user.tipoIdentificacion}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.tipoIdentificacion.getDescripcion()}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:selectOneMenu id="tipoIdentificacion"
+								value="#{userBean.tipoIdentificacion}" required="true">
+								<f:selectItems value="#{userBean.lstTipoIdentificacion}"
+									var="identificacion" itemLabel="#{identificacion.descripcion}"
+									itemValue="#{identificacion.idIdentificacion}" />
+							</h:selectOneMenu>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Identificacion">
-					<h:outputText value="#{user.identificacion}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.identificacion}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<p:inputText id="identificacion" size="40" maxlength="60"
+								value="#{user.identificacion}" required="true">
+							</p:inputText>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Nombre">
-					<h:outputText value="#{user.nombre}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.nombre}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<p:inputText id="nombre" size="40" maxlength="60"
+								value="#{user.nombre}" required="true">
+							</p:inputText>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Apellido">
-					<h:outputText value="#{user.apellido}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.apellido}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<p:inputText id="apellido" size="40" maxlength="60"
+								value="#{user.apellido}" required="true">
+							</p:inputText>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="Direccion">
-					<h:outputText value="#{user.direccion}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.direccion}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText id="direccion" size="40" maxlength="60"
+								value="#{user.direccion}" required="true">
+							</h:inputText>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
 
 				<p:column headerText="celular">
-					<h:outputText value="#{user.celular}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.celular}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText id="celular" size="40" maxlength="60"
+								value="#{user.celular}" required="true">
+							</h:inputText>
+						</f:facet>
+					</p:cellEditor>
+
 				</p:column>
 
 				<p:column headerText="Email">
-					<h:outputText value="#{user.email}" />
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{user.email}" />
+						</f:facet>
+
+						<f:facet name="input">
+							<h:inputText id="email" size="40" maxlength="60"
+								value="#{user.email}" required="true">
+							</h:inputText>
+						</f:facet>
+					</p:cellEditor>
 				</p:column>
+
+				<p:column style="width:35px">
+					<p:rowEditor />
+				</p:column>
+
+				<p:ajax event="rowEdit" listener="#{userBean.updateUser(user)}" update="usersTable"/>
 
 			</p:dataTable>
 		</p:fieldset>

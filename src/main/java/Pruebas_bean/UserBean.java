@@ -12,6 +12,7 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import org.hibernate.Session;
+import org.primefaces.event.RowEditEvent;
 
 import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
@@ -39,11 +40,13 @@ public class UserBean {
 	private List<TipoIdentificacion> lstTipoIdentificacion;
 	private List<Usuario> lstUsers;
 	
+	private Usuario userSelected;
+	
 	
 	// Constructor
 	public UserBean() {	
-		lstUsers = new ArrayList<>();
-		lstTipoIdentificacion = new  ArrayList<>();
+		lstUsers = new ArrayList<Usuario>();
+		lstTipoIdentificacion = new  ArrayList<TipoIdentificacion>();
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 	
@@ -109,6 +112,30 @@ public class UserBean {
 		} catch (Exception e) {
 			System.out.println("Error createUser(): " + e.toString());
 		}
+	}
+	
+	
+	public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Usuario Editado", ((Usuario) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Usuario cancelado", ((Usuario) event.getObject()).getNombre());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+	
+	
+	// Metodo que modifica un usuario
+	public void updateUser(Usuario u) {
+		System.out.println("Usuario a modificar");
+		System.out.println("Identificacion: " + u.getIdentificacion() + " Nombre: " + u.getNombre());
+	}
+	
+	
+	// Metodo que elimina un usuario
+	public void deleteUserSelected() {
+		lstUsers.remove(userSelected);
 	}
 	
 	public void addMessage(String summary) {
@@ -186,6 +213,14 @@ public class UserBean {
 
 	public void setLstTipoIdentificacion(List<TipoIdentificacion> lstTipoIdentificacion) {
 		this.lstTipoIdentificacion = lstTipoIdentificacion;
+	}
+
+	public Usuario getUserSelected() {
+		return userSelected;
+	}
+
+	public void setUserSelected(Usuario userSelected) {
+		this.userSelected = userSelected;
 	}
 
 }
