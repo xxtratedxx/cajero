@@ -75,7 +75,7 @@
 					update=":readUsers:msg" />
 				<p:ajax event="rowEditCancel" listener="#{userBean.onRowCancel}"
 					update=":readUsers:msg" />
-				<p:column headerText="tipo Identificacion">
+				<p:column headerText="Tipo Identificacion">
 					<p:cellEditor>
 						<f:facet name="output">
 							<h:outputText value="#{user.tipoIdentificacion.getDescripcion()}" />
@@ -179,6 +179,7 @@
 
 				<p:column style="width:35px">
 					<p:rowEditor />
+					<p:commandButton action="#{userBean.deleteUser(user.idUsuario, user.nombre)}" id="delete" style="margin-right:20px;" icon="pi pi-times" title="Eliminar usuario" update=":readUsers:msg"/>
 				</p:column>
 
 				<p:ajax event="rowEdit" listener="#{userBean.updateUser(user)}" update="usersTable"/>

@@ -42,13 +42,15 @@ public class UserBean {
 	
 	private Usuario userSelected;
 	
+	private Session session;
+	
 	
 	// Constructor
 	public UserBean() {	
 		lstUsers = new ArrayList<Usuario>();
 		lstTipoIdentificacion = new  ArrayList<TipoIdentificacion>();
 		
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		session = HibernateUtil.getSessionFactory().openSession();
 	
 		this.getLstTipoIdentificacion(session);
 		this.getLstUsers(session);	
@@ -130,12 +132,37 @@ public class UserBean {
 	public void updateUser(Usuario u) {
 		System.out.println("Usuario a modificar");
 		System.out.println("Identificacion: " + u.getIdentificacion() + " Nombre: " + u.getNombre());
+		
+		UsuarioService usuarioService = new UsuarioService(session);
+		usuarioService = new UsuarioService(session);
+		u.setFecActualiza(new Date());
+		Usuario usuarioActualizado = usuarioService.update(u);
+		usuarioService.closeSession();
+		
+		System.out.println("Usuario actualizado: nombre: " + usuarioActualizado.getNombre() + " Apellido: " + usuarioActualizado.getApellido());
+		try {
+			
+		} catch (Exception e) {
+			System.out.println("Error updateUser(Usuario u)");
+		}
 	}
 	
 	
 	// Metodo que elimina un usuario
-	public void deleteUserSelected() {
-		lstUsers.remove(userSelected);
+	public void deleteUser(int idUser, String nameUser) {
+		System.out.println("Usuario eliminado: " + nameUser);
+		
+		System.out.println("Tamaño de la lista de usuarios: " + lstUsers.size());
+		
+		UsuarioService usuarioService = new UsuarioService(session);
+		usuarioService = new UsuarioService(session);
+		usuarioService.delete(idUser);
+		lstUsers = usuarioService.findByIdall();
+		usuarioService.closeSession();
+		
+		System.out.println("Tamaño de la lista de usuarios incluyendo el registro eliminado: " + lstUsers.size());
+		this.addMessage("Usuario eliminado");
+		
 	}
 	
 	public void addMessage(String summary) {
