@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -16,45 +18,49 @@ import javax.persistence.Table;
 @Table(name = "Cuenta")
 public class Cuenta implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6980524639693893065L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCuenta;
+	@OneToOne
+	@JoinColumn(name="id_banco")
 	private Banco banco;
+	
+	@OneToOne
+	@JoinColumn(name="id_estado")
 	private Estado estado;
+	@OneToOne
+	@JoinColumn(name="id_producto")
 	private Producto producto;
-	//private Usuario usuario;
+	@OneToOne
+	@JoinColumn(name="id_usuario")
+	private Usuario usuario;
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
 	private String numero;
 	private BigDecimal saldo;
 	private String clave;
-	//private Set detalles = new HashSet(0);
-//	private Set tarjetas = new HashSet(0);
+	//private  Detalles detalles;
+//private  Tarjetas tarjetas;
 
-	public Cuenta() {
-	}
 
-	public Cuenta(Banco banco, Estado estado, Producto producto,  String numero, BigDecimal saldo,
+
+	public Cuenta(Banco banco, Estado estado, Producto producto,Usuario usuario,  String numero, BigDecimal saldo,
 			String clave) {
 		this.banco = banco;
 		this.estado = estado;
 		this.producto = producto;
-		//this.usuario = usuario;
+		this.usuario = usuario;
 		this.numero = numero;
 		this.saldo = saldo;
 		this.clave = clave;
 	}
 
-//	public Cuenta(Banco banco, Estado estado, Producto producto, Usuario usuario, String numero, BigDecimal saldo,
-	//		String clave, Set detalles, Set tarjetas) {
-	//	this.banco = banco;
-	//	this.estado = estado;
-	//	this.producto = producto;
-	//	this.usuario = usuario;
-	//	this.numero = numero;
-	///	this.saldo = saldo;
-	//	this.clave = clave;
-	//	this.detalles = detalles;
-	//	this.tarjetas = tarjetas;
-	//}
+public Cuenta () {
+		
+	}
 
 	public Integer getIdCuenta() {
 		return this.idCuenta;
@@ -88,13 +94,13 @@ public class Cuenta implements java.io.Serializable {
 		this.producto = producto;
 	}
 
-//	public Usuario getUsuario() {
-//		return this.usuario;
-//	}
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
 
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+}
 
 	public String getNumero() {
 		return this.numero;

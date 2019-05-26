@@ -1,10 +1,7 @@
 package co.edu.uniajc.cajero.dao;
 
-import java.util.Date;
+
 import java.util.List;
-
-
-import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
 
 public interface UsuarioDao {	

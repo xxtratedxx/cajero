@@ -2,9 +2,6 @@ package co.edu.uniajc.cajero.model;
 // Generated 7/04/2019 01:08:10 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +15,10 @@ import javax.persistence.Table;
 @Table(name = "Tarjeta")
 public class Tarjeta implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 940519748274981851L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idTarjeta;

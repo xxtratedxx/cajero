@@ -16,7 +16,7 @@ import org.primefaces.event.RowEditEvent;
 
 import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
-
+import co.edu.uniajc.cajero.service.TipoIdentificacionService;
 import co.edu.uniajc.cajero.service.UsuarioService;
 import co.edu.uniajc.cajero.util.HibernateUtil;
 

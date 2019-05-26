@@ -2,15 +2,10 @@ package co.edu.uniajc.cajero.service;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Session;
-
-
 import co.edu.uniajc.cajero.dao.ImpBancoDao;
-import co.edu.uniajc.cajero.dao.ImpTipoIdentificacionDao;
-import co.edu.uniajc.cajero.dao.ImpUsuarioDao;
 import co.edu.uniajc.cajero.model.Banco;
-import co.edu.uniajc.cajero.model.TipoIdentificacion;
+
 
 public class BancoServices implements Serializable{
 	

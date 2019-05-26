@@ -17,6 +17,10 @@ import javax.persistence.Table;
 @Table(name = "Cajero")
 public class Cajero implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 291246938880781790L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCajero;

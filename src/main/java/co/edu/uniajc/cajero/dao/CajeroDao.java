@@ -103,7 +103,7 @@ public class CajeroDao {
 		}
 	}
 
-	public List findByExample(Cajero instance) {
+	public List<?> findByExample(Cajero instance) {
 		log.debug("finding Cajero instance by example");
 		try {
 			List results = sessionFactory.getCurrentSession().createCriteria("co.edu.uniajc.cajero.dao.Cajero")
