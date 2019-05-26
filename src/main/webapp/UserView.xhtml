@@ -20,14 +20,21 @@
 				<p:selectOneButton value="#{userBean.tipoIdentificacion}">
 					<f:selectItem itemLabel="Cedula ciudadania" itemValue="1" />
 					<f:selectItem itemLabel="Tarjeta de identidad" itemValue="2" />
-					<f:selectItem itemLabel="Pasaporte" itemValue="3" />
+					<f:selectItem itemLabel="Pasaporte" itemValue="3" />			
 				</p:selectOneButton>
 
 				<h:outputText value="Identificacion: " />
 				<h:inputText id="identificacion" size="40" maxlength="60"
 					value="#{userBean.identificacion}">
 				</h:inputText>
-
+	           <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5" columnClasses="label, value">
+                  <p:outputLabel for="basic" value="Basic:" />
+                  <p:selectOneListbox id="basic" value="#{tipoIdentificacionBean.lista}" var ="p">
+                      <f:selectItem itemLabel="Option 2" itemValue="#{p.descripcion}" value="#{p.descripcion}"/>
+                      <f:selectItem itemLabel="Option 2" itemValue="2" />
+                      <f:selectItem itemLabel="Option 3" itemValue="3" />
+                 </p:selectOneListbox>
+              </h:panelGrid>
 				<h:outputText value="Nombre: " />
 				<h:inputText id="nombre" size="40" maxlength="60"
 					value="#{userBean.nombre}">
