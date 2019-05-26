@@ -26,10 +26,13 @@ public class UsuarioService implements Serializable {
 		return usuarioDao.findById(id);
 	}
 	
-	public Usuario Update(int id ,TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido, String direccion, String celular, String email, Date fecActualiza){
-		return usuarioDao.Update(id,tipoIdentificacion,identificacion,nombre,apellido, direccion, celular,email,fecActualiza);
-	}
+//	public Usuario Update(int id ,TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido, String direccion, String celular, String email, Date fecActualiza){
+//		return usuarioDao.Update(id,tipoIdentificacion,identificacion,nombre,apellido, direccion, celular,email,fecActualiza);
+//	}
 	
+	public Usuario update(Usuario u){
+		return usuarioDao.Update(u);
+	}
 	
 	public List<Usuario> findByIdall() {
 		return usuarioDao.findByIdall();
@@ -38,8 +41,8 @@ public class UsuarioService implements Serializable {
 	public void save(Usuario usuario) {
 		usuarioDao.save(usuario);
 	}
-	public Usuario Delete(int id){
-		return usuarioDao.Delete(id);
+	public Usuario delete(int id){
+		return usuarioDao.delete(id);
 	}
 	
 	public void closeSession(){

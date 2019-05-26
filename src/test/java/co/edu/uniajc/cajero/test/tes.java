@@ -27,7 +27,7 @@ public class tes {
 		
 		
 		System.out.println(TipoIdentificacionService.findByIdall().get(3).getDescripcion().toString());
-		TipoIdentificacionService.Update(3, "pruebba update");
+		TipoIdentificacionService.Update(3, "prueba update ty");
 		TipoIdentificacionService.Delete(23);
 	//	TipoIdentificacionService.findByIdall();
 	    

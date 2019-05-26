@@ -1,37 +1,44 @@
 package co.edu.uniajc.cajero.dao;
 // Generated 7/04/2019 01:08:54 PM by Hibernate Tools 5.2.12.Final
 
+
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+
 import org.hibernate.Session;
+
 import org.hibernate.Transaction;
-import co.edu.uniajc.cajero.model.TipoIdentificacion;
-import co.edu.uniajc.cajero.model.TipoIdentificacion_;
+import org.hibernate.criterion.Example;
+
+import co.edu.uniajc.cajero.model.Banco;
+import co.edu.uniajc.cajero.model.Banco_;
+
+
 
 /**
  * Home object for domain model class TipoIdentificacion.
  * @see co.edu.uniajc.cajero.dao.TipoIdentificacion
  * @author Hibernate Tools
  */
-public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
+public class ImpBancoDao implements BancoDao   {
 
 	private Session session;
 	
 
-	public ImpTipoIdentificacionDao(Session session) {
+	public ImpBancoDao(Session session) {
 		this.session = session;
 	}
 	
 	@Override
-	public void save(TipoIdentificacion TipoIdentificacion) {
+	public void save(Banco Banco) {
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
 			
-			session.save(TipoIdentificacion);
+			session.save(Banco);
 			
 			tx.commit();
 		} 
@@ -44,23 +51,23 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 	}			
 
 	@Override
-	public TipoIdentificacion findById(int id) {
+	public Banco findById(int id) {
 		Transaction tx = null;
-		TipoIdentificacion Tipoidentificacion = null;
+		Banco Tipoidentificacion = null;
 		try {
 			tx = session.beginTransaction();
 			
 			// frabrica  para las piezas individuales de criteria 
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<TipoIdentificacion> criteria = builder.createQuery(TipoIdentificacion.class);
+			CriteriaQuery<Banco> criteria = builder.createQuery(Banco.class);
 			
 			// Definir el tipo de entidad que retorna la consulta 
-			Root<TipoIdentificacion> root = criteria.from(TipoIdentificacion.class);
+			Root<Banco> root = criteria.from(Banco.class);
 			
 			//construyendo la consulta 
 			criteria.select(root);
 			criteria.where(
-					builder.equal(root.get(TipoIdentificacion_.idIdentificacion), id)
+					builder.equal(root.get(Banco_.idBanco), id)
 					);
 			
 			Tipoidentificacion = session.createQuery(criteria).getSingleResult();
@@ -76,29 +83,29 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 		return Tipoidentificacion;
 	}
 
-	public List<TipoIdentificacion> findByIdall() {
+	public List<Banco> findByIdall() {
 		Transaction tx = null;
-		//TipoIdentificacion Tipoidentificacion = null;
+		
 		try {
 			tx = session.beginTransaction();
 			
 			// frabrica  para las piezas individuales de criteria 
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<TipoIdentificacion> criteria = builder.createQuery(TipoIdentificacion.class);
+			CriteriaQuery<Banco> criteria = builder.createQuery(Banco.class);
 			
 			// Definir el tipo de entidad que retorna la consulta 
-			Root<TipoIdentificacion> root = criteria.from(TipoIdentificacion.class);
+			Root<Banco> root = criteria.from(Banco.class);
 			
 			//construyendo la consulta 
 			criteria.select(root);
 	
-			List<TipoIdentificacion> lstTipoIdentificacion = session.createQuery(criteria).getResultList();
+			List<Banco> lstBanco = session.createQuery(criteria).getResultList();
 					
-			//Tipoidentificacion = session.createQuery(criteria).getSingleResult();
+			
 			
 			tx.commit();
 			
-			return lstTipoIdentificacion;
+			return lstBanco;
 		} 
 		catch (Exception e) {
 			if(tx != null){
@@ -112,30 +119,30 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 	}
 
 	@Override
-	public TipoIdentificacion Update(int id,String desc) {
+	public Banco Update(int id,String nit, String nombre,String direccion,String telefono) {
 		Transaction tx = null;
-		TipoIdentificacion Tipoidentificacion = null;
+		Banco banco = null;
 		try {
 			tx = session.beginTransaction();
 			
 			// frabrica  para las piezas individuales de criteria 
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<TipoIdentificacion> criteria = builder.createQuery(TipoIdentificacion.class);
+			CriteriaQuery<Banco> criteria = builder.createQuery(Banco.class);
 			
 			// Definir el tipo de entidad que retorna la consulta 
-			Root<TipoIdentificacion> root = criteria.from(TipoIdentificacion.class);
+			Root<Banco> root = criteria.from(Banco.class);
 			
 			//construyendo la consulta 
 			criteria.select(root);
 			criteria.where(
-					builder.equal(root.get(TipoIdentificacion_.idIdentificacion), id)
+					builder.equal(root.get(Banco_.idBanco), id)
 					);
 			
-			Tipoidentificacion = session.createQuery(criteria).getSingleResult();
+			banco = session.createQuery(criteria).getSingleResult();
 			
 			//Update		
-			Tipoidentificacion.setDescripcion(desc);
-			session.update(Tipoidentificacion);
+			banco.setNombre(nombre);
+			session.update(banco);
 			
 			tx.commit();
 		} 
@@ -145,34 +152,34 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 			}
 			e.printStackTrace();
 		}
-		return Tipoidentificacion;
+		return banco;
 	}
 
 	@Override
-	public TipoIdentificacion Delete(int id) {
+	public Banco Delete(int id) {
 		Transaction tx = null;
-		TipoIdentificacion Tipoidentificacion = null;
+		Banco banco = null;
 		try {
 			tx = session.beginTransaction();
 			
 			// frabrica  para las piezas individuales de criteria 
 			CriteriaBuilder builder = session.getCriteriaBuilder();
-			CriteriaQuery<TipoIdentificacion> criteria = builder.createQuery(TipoIdentificacion.class);
+			CriteriaQuery<Banco> criteria = builder.createQuery(Banco.class);
 			
 			// Definir el tipo de entidad que retorna la consulta 
-			Root<TipoIdentificacion> root = criteria.from(TipoIdentificacion.class);
+			Root<Banco> root = criteria.from(Banco.class);
 			
 			//construyendo la consulta 
 			criteria.select(root);
 			criteria.where(
-					builder.equal(root.get(TipoIdentificacion_.idIdentificacion), id)
+					builder.equal(root.get(Banco_.idBanco), id)
 					);
 			
-			Tipoidentificacion = session.createQuery(criteria).getSingleResult();
+			banco = session.createQuery(criteria).getSingleResult();
 			
 			// Delete 
-			Tipoidentificacion.setIdIdentificacion(id);			
-			session.delete(Tipoidentificacion);
+			//banco.setIdIdentificacion(id);			
+			session.delete(banco);
 		 		       
 			tx.commit();
 		} 
@@ -182,7 +189,7 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 			}
 			e.printStackTrace();
 		}
-		return Tipoidentificacion ;
+		return banco ;
 	}
 
 	public void closeSession() {
@@ -191,4 +198,9 @@ public class ImpTipoIdentificacionDao implements TipoIdentificacionDao   {
 	}
 
 	
+
+	
+
+	
 }
+
