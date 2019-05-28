@@ -16,10 +16,11 @@ import javax.persistence.Table;
 public class Movimiento implements java.io.Serializable {
 
 	
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6899525427141686998L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idMovimiento;

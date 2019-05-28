@@ -3,7 +3,7 @@
 <hibernate-mapping auto-import="true" default-access="property" default-cascade="none" default-lazy="true">
     <class catalog="atm" dynamic-insert="false" dynamic-update="false" mutable="true" name="co.edu.uniajc.cajero.model.Cuenta" optimistic-lock="version" polymorphism="implicit" select-before-update="false" table="cuenta">
         <id name="idCuenta" type="java.lang.Integer">
-            <column name="id_cuenta"/>
+            <column name="idcuenta"/>
             <generator class="identity"/>
         </id>
         <many-to-one class="co.edu.uniajc.cajero.model.Banco" embed-xml="true" fetch="select" insert="true" name="banco" not-found="exception" optimistic-lock="true" unique="false" update="true">

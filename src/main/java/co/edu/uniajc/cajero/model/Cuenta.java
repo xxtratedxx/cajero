@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -18,92 +18,90 @@ import javax.persistence.Table;
 @Table(name = "Cuenta")
 public class Cuenta implements java.io.Serializable {
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6980524639693893065L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCuenta;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="id_banco")
-	private Banco banco;
-	
-	@OneToOne
+	private Banco id_banco;
+	@ManyToOne
 	@JoinColumn(name="id_estado")
-	private Estado estado;
-	@OneToOne
+	private Estado id_estado;
+	@ManyToOne
 	@JoinColumn(name="id_producto")
-	private Producto producto;
-	@OneToOne
+	private Producto id_producto;
+	@ManyToOne
 	@JoinColumn(name="id_usuario")
-	private Usuario usuario;
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																							
+	private Usuario id_usuario;
 	private String numero;
 	private BigDecimal saldo;
 	private String clave;
-	//private  Detalles detalles;
-//private  Tarjetas tarjetas;
+	//private Set detalles = new HashSet(0);
+//	private Set tarjetas = new HashSet(0);
 
-
-
-	public Cuenta(Banco banco, Estado estado, Producto producto,Usuario usuario,  String numero, BigDecimal saldo,
-			String clave) {
-		this.banco = banco;
-		this.estado = estado;
-		this.producto = producto;
-		this.usuario = usuario;
-		this.numero = numero;
-		this.saldo = saldo;
-		this.clave = clave;
+	public Cuenta() {
 	}
 
-public Cuenta () {
-		
-	}
+	public Cuenta(Banco id_banco, Estado id_estado, Producto id_producto, Usuario id_usuario, String numero, BigDecimal saldo,
+		String clave) {
+				this.id_banco = id_banco;
+				this.id_estado = id_estado;
+				this.id_producto = id_producto;
+				this.id_usuario = id_usuario;
+				this.numero = numero;
+				this.saldo = saldo;
+			    this.clave = clave;
+			//	this.detalles = detalles;
+			//	this.tarjetas = tarjetas;
+			}
 
 	public Integer getIdCuenta() {
-		return this.idCuenta;
+		return idCuenta;
 	}
 
 	public void setIdCuenta(Integer idCuenta) {
 		this.idCuenta = idCuenta;
 	}
 
-	public Banco getBanco() {
-		return this.banco;
+	public Banco getId_banco() {
+		return id_banco;
 	}
 
-	public void setBanco(Banco banco) {
-		this.banco = banco;
+	public void setId_banco(Banco id_banco) {
+		this.id_banco = id_banco;
 	}
 
-	public Estado getEstado() {
-		return this.estado;
+	public Estado getId_estado() {
+		return id_estado;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setId_estado(Estado id_estado) {
+		this.id_estado = id_estado;
 	}
 
-	public Producto getProducto() {
-		return this.producto;
+	public Producto getId_producto() {
+		return id_producto;
 	}
 
-	public void setProducto(Producto producto) {
-		this.producto = producto;
+	public void setId_producto(Producto id_producto) {
+		this.id_producto = id_producto;
 	}
 
-	public Usuario getUsuario() {
-		return this.usuario;
+	public Usuario getId_usuario() {
+		return id_usuario;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-}
+	public void setId_usuario(Usuario id_usuario) {
+		this.id_usuario = id_usuario;
+	}
 
 	public String getNumero() {
-		return this.numero;
+		return numero;
 	}
 
 	public void setNumero(String numero) {
@@ -111,7 +109,7 @@ public Cuenta () {
 	}
 
 	public BigDecimal getSaldo() {
-		return this.saldo;
+		return saldo;
 	}
 
 	public void setSaldo(BigDecimal saldo) {
@@ -119,27 +117,24 @@ public Cuenta () {
 	}
 
 	public String getClave() {
-		return this.clave;
+		return clave;
 	}
 
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
 
-	//public Set getDetalles() {
-	//	return this.detalles;
-	//}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
-	//public void setDetalles(Set detalles) {
-	//	this.detalles = detalles;
-	//}
+	@Override
+	public String toString() {
+		return "Cuenta [idCuenta=" + idCuenta + ", id_banco=" + id_banco + ", id_estado=" + id_estado + ", id_producto="
+				+ id_producto + ", id_usuario=" + id_usuario + ", numero=" + numero + ", saldo=" + saldo + ", clave="
+				+ clave + "]";
+	}
 
-	//public Set getTarjetas() {
-	///	return this.tarjetas;
-	//}
 
-//	public void setTarjetas(Set tarjetas) {
-//		this.tarjetas = tarjetas;
-//	}
 
 }

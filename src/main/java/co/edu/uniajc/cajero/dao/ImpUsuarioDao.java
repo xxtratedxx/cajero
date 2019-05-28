@@ -2,7 +2,7 @@ package co.edu.uniajc.cajero.dao;
 // Generated 7/04/2019 01:08:54 PM by Hibernate Tools 5.2.12.Final
 
 
-
+import java.util.Date;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import co.edu.uniajc.cajero.model.TipoIdentificacion;
 import co.edu.uniajc.cajero.model.Usuario;
 import co.edu.uniajc.cajero.model.Usuario_;
 

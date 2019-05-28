@@ -3,11 +3,12 @@ package co.edu.uniajc.cajero.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,27 +21,25 @@ public class Transaccion implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 190820726768305939L;
-	/**
-	 * 
-	 */
-
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer idTransaccion;
-	private Cajero cajero;
-	private Date fecCreacion;
-	private int indEstado;
+	private Integer id_Transaccion;
+	@ManyToOne
+	@JoinColumn(name="idCajero")
+	private Cajero idcajero;
+	private Date fec_Creacion;
+	private int ind_Estado;
 	private BigDecimal valor;
 	//private Set detalles = new HashSet(0);
 
 	public Transaccion() {
 	}
 
-	public Transaccion(Cajero cajero, Date fecCreacion, int indEstado) {
-		this.cajero = cajero;
-		this.fecCreacion = fecCreacion;
-		this.indEstado = indEstado;
+	public Transaccion(Cajero idcajero, Date fec_Creacion, int ind_Estado) {
+		this.idcajero = idcajero;
+		this.fec_Creacion = fec_Creacion;
+		this.ind_Estado = ind_Estado;
 	}
 
 //	public Transaccion(Cajero cajero, Date fecCreacion, int indEstado, BigDecimal valor, Set detalles) {
@@ -51,36 +50,37 @@ public class Transaccion implements java.io.Serializable {
 	//	this.detalles = detalles;
 	//}
 
-	public Integer getIdTransaccion() {
-		return this.idTransaccion;
+	public Integer getId_Transaccion() {
+		return this.id_Transaccion;
 	}
 
-	public void setIdTransaccion(Integer idTransaccion) {
-		this.idTransaccion = idTransaccion;
+	public void setIdTransaccion(Integer id_Transaccion) {
+		this.id_Transaccion = id_Transaccion;
 	}
 
-	public Cajero getCajero() {
-		return this.cajero;
+
+	public Cajero getIdcajero() {
+		return idcajero;
 	}
 
-	public void setCajero(Cajero cajero) {
-		this.cajero = cajero;
+	public void setIdcajero(Cajero idcajero) {
+		this.idcajero = idcajero;
 	}
 
-	public Date getFecCreacion() {
-		return this.fecCreacion;
+	public Date getFec_Creacion() {
+		return this.fec_Creacion;
 	}
 
-	public void setFecCreacion(Date fecCreacion) {
-		this.fecCreacion = fecCreacion;
+	public void setFecCreacion(Date fec_Creacion) {
+		this.fec_Creacion = fec_Creacion;
 	}
 
 	public int getIndEstado() {
-		return this.indEstado;
+		return this.ind_Estado;
 	}
 
-	public void setIndEstado(int indEstado) {
-		this.indEstado = indEstado;
+	public void setIndEstado(int ind_Estado) {
+		this.ind_Estado = ind_Estado;
 	}
 
 	public BigDecimal getValor() {
@@ -91,12 +91,11 @@ public class Transaccion implements java.io.Serializable {
 		this.valor = valor;
 	}
 
-	//public Set getDetalles() {
-	//	return this.detalles;
-	//}
+	@Override
+	public String toString() {
+		return "Transaccion [idTransaccion=" + id_Transaccion + ", idcajero=" + idcajero + ", fecCreacion=" + fec_Creacion
+				+ ", indEstado=" + ind_Estado + ", valor=" + valor + "]";
+	}
 
-	//public void setDetalles(Set detalles) {
-	//	this.detalles = detalles;
-	//}
 
 }

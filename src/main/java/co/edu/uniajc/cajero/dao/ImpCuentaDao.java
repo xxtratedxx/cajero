@@ -136,11 +136,11 @@ public class ImpCuentaDao implements CuentaDao {
 			Cuenta = session.createQuery(criteria).getSingleResult();
 			
 			//Update		
-			Cuenta.setBanco(c.getBanco());
+			Cuenta.setId_banco(c.getId_banco());
 			Cuenta.setClave(c.getClave());
-			Cuenta.setEstado(c.getEstado());
+			Cuenta.setId_estado(c.getId_estado());
 			Cuenta.setNumero(c.getNumero());
-			Cuenta.setProducto(c.getProducto());
+			Cuenta.setId_producto(c.getId_producto());
 			Cuenta.setSaldo(c.getSaldo());
 			Cuenta.setIdCuenta(c.getIdCuenta());
 			

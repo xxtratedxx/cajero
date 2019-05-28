@@ -9,7 +9,7 @@ import co.edu.uniajc.cajero.dao.ImpCuentaDao;
 import co.edu.uniajc.cajero.model.Cuenta;
 
 
-public class CuentaService implements Serializable{
+public class CuentaService implements Serializable {
 	
 	/**
 	 * 
@@ -38,12 +38,15 @@ public class CuentaService implements Serializable{
 	public Cuenta Update(Cuenta c){
 		return CuentaDao.Update(c);
 	}
+	
 	public Cuenta Delete(int id){
 		return CuentaDao.Delete(id);
 	}
 	public void closeSession(){
 		CuentaDao.closeSession();
 	}
+
+
 	
 }
 

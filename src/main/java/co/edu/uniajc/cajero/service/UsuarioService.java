@@ -2,7 +2,6 @@ package co.edu.uniajc.cajero.service;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.hibernate.Session;
 import co.edu.uniajc.cajero.dao.ImpUsuarioDao;
 import co.edu.uniajc.cajero.model.Usuario;
@@ -23,10 +22,6 @@ public class UsuarioService implements Serializable {
 	public Usuario findById(int id){
 		return usuarioDao.findById(id);
 	}
-	
-//	public Usuario Update(int id ,TipoIdentificacion tipoIdentificacion, String identificacion, String nombre, String apellido, String direccion, String celular, String email, Date fecActualiza){
-//		return usuarioDao.Update(id,tipoIdentificacion,identificacion,nombre,apellido, direccion, celular,email,fecActualiza);
-//	}
 	
 	public Usuario update(Usuario u){
 		return usuarioDao.Update(u);

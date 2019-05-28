@@ -1,6 +1,5 @@
 package co.edu.uniajc.cajero.model;
 // Generated 7/04/2019 01:08:10 PM by Hibernate Tools 5.2.12.Final
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +20,6 @@ public class Banco implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idBanco;
-	
 	private String nit;
 	private String nombre;
 	private String direccion;
@@ -44,11 +42,6 @@ public class Banco implements java.io.Serializable {
 		this.telefono = telefono;
 	//	this.cuentas = cuentas;
 	//	this.cajeros = cajeros;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	public Integer getIdBanco() {

@@ -2,14 +2,22 @@ package co.edu.uniajc.cajero.service;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.hibernate.Session;
+
+
 import co.edu.uniajc.cajero.dao.ImpBancoDao;
 import co.edu.uniajc.cajero.model.Banco;
 
 
-public class BancoServices implements Serializable{
+public class BancoServices implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6495972112159530554L;
+	
 	private ImpBancoDao bancoDao;
 	
 	public BancoServices(Session session) {

@@ -11,8 +11,8 @@ public abstract class Cajero_ {
 
 	public static volatile SingularAttribute<Cajero, String> ubicacion;
 	public static volatile SingularAttribute<Cajero, Integer> indServicio;
+	public static volatile SingularAttribute<Cajero, Banco> idbanco;
 	public static volatile SingularAttribute<Cajero, Integer> idCajero;
-	public static volatile SingularAttribute<Cajero, Banco> banco;
 	public static volatile SingularAttribute<Cajero, BigDecimal> saldo;
 
 }

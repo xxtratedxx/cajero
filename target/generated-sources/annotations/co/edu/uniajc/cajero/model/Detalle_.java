@@ -9,12 +9,12 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Detalle.class)
 public abstract class Detalle_ {
 
+	public static volatile SingularAttribute<Detalle, Transaccion> id_transaccion;
+	public static volatile SingularAttribute<Detalle, Tarjeta> id_tarjeta;
 	public static volatile SingularAttribute<Detalle, BigDecimal> monto;
-	public static volatile SingularAttribute<Detalle, Movimiento> movimiento;
-	public static volatile SingularAttribute<Detalle, Transaccion> transaccion;
-	public static volatile SingularAttribute<Detalle, Cuenta> cuenta;
-	public static volatile SingularAttribute<Detalle, DetalleId> id;
-	public static volatile SingularAttribute<Detalle, Tarjeta> tarjeta;
+	public static volatile SingularAttribute<Detalle, Integer> idDetalle;
+	public static volatile SingularAttribute<Detalle, Cuenta> idcuenta;
+	public static volatile SingularAttribute<Detalle, Movimiento> id_movimiento;
 
 }
 

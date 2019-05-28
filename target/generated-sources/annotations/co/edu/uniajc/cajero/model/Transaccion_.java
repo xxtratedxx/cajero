@@ -10,11 +10,11 @@ import javax.persistence.metamodel.StaticMetamodel;
 @StaticMetamodel(Transaccion.class)
 public abstract class Transaccion_ {
 
-	public static volatile SingularAttribute<Transaccion, Integer> idTransaccion;
-	public static volatile SingularAttribute<Transaccion, Date> fecCreacion;
+	public static volatile SingularAttribute<Transaccion, Cajero> idcajero;
+	public static volatile SingularAttribute<Transaccion, Integer> ind_Estado;
 	public static volatile SingularAttribute<Transaccion, BigDecimal> valor;
-	public static volatile SingularAttribute<Transaccion, Cajero> cajero;
-	public static volatile SingularAttribute<Transaccion, Integer> indEstado;
+	public static volatile SingularAttribute<Transaccion, Date> fec_Creacion;
+	public static volatile SingularAttribute<Transaccion, Integer> id_Transaccion;
 
 }
 

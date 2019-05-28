@@ -2,10 +2,14 @@ package co.edu.uniajc.cajero.model;
 // Generated 7/04/2019 01:08:10 PM by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -15,15 +19,21 @@ import javax.persistence.Table;
 @Table(name = "Tarjeta")
 public class Tarjeta implements java.io.Serializable {
 
+
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 940519748274981851L;
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idTarjeta;
-	private Cuenta cuenta;
-	private Estado estado;
+	@ManyToOne
+	@JoinColumn(name="idCuenta")
+	private Cuenta idcuenta;
+	@ManyToOne
+	@JoinColumn(name="idestado")
+	private Estado idestado;
+	
 	private String numero;
 	private Date validthru;
 	private int indBlock;
@@ -34,9 +44,9 @@ public class Tarjeta implements java.io.Serializable {
 	public Tarjeta() {
 	}
 
-	public Tarjeta(Cuenta cuenta, Estado estado, String numero, Date validthru, int indBlock, String clave) {
-		this.cuenta = cuenta;
-		this.estado = estado;
+	public Tarjeta(Cuenta idcuenta, Estado idestado, String numero, Date validthru, int indBlock, String clave) {
+		this.idcuenta = idcuenta;
+		this.idestado = idestado;
 		this.numero = numero;
 		this.validthru = validthru;
 		this.indBlock = indBlock;
@@ -55,6 +65,14 @@ public class Tarjeta implements java.io.Serializable {
 	///	this.detalles = detalles;
 	//}
 
+	public Estado getIdestado() {
+		return idestado;
+	}
+
+	public void setIdestado(Estado idestado) {
+		this.idestado = idestado;
+	}
+
 	public Integer getIdTarjeta() {
 		return this.idTarjeta;
 	}
@@ -63,20 +81,14 @@ public class Tarjeta implements java.io.Serializable {
 		this.idTarjeta = idTarjeta;
 	}
 
-	public Cuenta getCuenta() {
-		return this.cuenta;
+
+
+	public Cuenta getIdcuenta() {
+		return idcuenta;
 	}
 
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
-	}
-
-	public Estado getEstado() {
-		return this.estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setIdcuenta(Cuenta idcuenta) {
+		this.idcuenta = idcuenta;
 	}
 
 	public String getNumero() {
@@ -127,4 +139,10 @@ public class Tarjeta implements java.io.Serializable {
 //		this.detalles = detalles;
 //	}
 
+	@Override
+	public String toString() {
+		return "Tarjeta [idTarjeta=" + idTarjeta + ", idcuenta=" + idcuenta + ", idestado=" + idestado + ", numero="
+				+ numero + ", validthru=" + validthru + ", indBlock=" + indBlock + ", clave=" + clave + ", fecCreacion="
+				+ fecCreacion + "]";
+	}
 }

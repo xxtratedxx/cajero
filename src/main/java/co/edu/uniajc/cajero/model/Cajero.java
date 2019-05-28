@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +26,9 @@ public class Cajero implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer idCajero;
-	private Banco banco;
+	@ManyToOne
+	@JoinColumn(name="idbanco")
+	private Banco idbanco;
 	private BigDecimal saldo;
 	private String ubicacion;
 	private int indServicio;
@@ -33,8 +37,8 @@ public class Cajero implements java.io.Serializable {
 	public Cajero() {
 	}
 
-	public Cajero(Banco banco, BigDecimal saldo, int indServicio) {
-		this.banco = banco;
+	public Cajero(Banco idbanco, BigDecimal saldo, int indServicio) {
+		this.idbanco = idbanco;
 		this.saldo = saldo;
 		this.indServicio = indServicio;
 	}
@@ -55,12 +59,12 @@ public class Cajero implements java.io.Serializable {
 		this.idCajero = idCajero;
 	}
 
-	public Banco getBanco() {
-		return this.banco;
+	public Banco getidBanco() {
+		return this.idbanco;
 	}
 
-	public void setBanco(Banco banco) {
-		this.banco = banco;
+	public void setidBanco(Banco idbanco) {
+		this.idbanco = idbanco;
 	}
 
 	public BigDecimal getSaldo() {

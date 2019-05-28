@@ -24,7 +24,6 @@
    <mapping class="co.edu.uniajc.cajero.model.Movimiento"/>
    <mapping class="co.edu.uniajc.cajero.model.Estado"/>
    <mapping class="co.edu.uniajc.cajero.model.Detalle"/>
-   <mapping class="co.edu.uniajc.cajero.model.DetalleId"/>
    <mapping class="co.edu.uniajc.cajero.model.Cuenta"/>
    <mapping class="co.edu.uniajc.cajero.model.Cajero"/>
 
